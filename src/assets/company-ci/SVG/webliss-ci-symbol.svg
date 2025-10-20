@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1421.36 845.34">
+  <defs>
+    <style>
+      .cls-1 {
+        mask: url(#mask-1);
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+
+      .cls-3 {
+        mask: url(#mask);
+      }
+
+      .cls-4 {
+        mask: url(#mask-2);
+      }
+
+      .cls-5 {
+        fill: #30a8e1;
+      }
+
+      .cls-6 {
+        fill: #1d2088;
+      }
+
+      .cls-7 {
+        mask: url(#mask-3);
+      }
+    </style>
+    <mask id="mask" x="-1289.32" y="-1577.33" width="4000" height="4000" maskUnits="userSpaceOnUse">
+      <g id="mask0_10_204" data-name="mask0 10 204">
+        <path class="cls-2" d="M-1289.32-1577.33h4000v4000H-1289.32V-1577.33Z"/>
+      </g>
+    </mask>
+    <mask id="mask-1" x="-1289.32" y="-1577.33" width="4000" height="4000" maskUnits="userSpaceOnUse">
+      <g id="mask1_10_204" data-name="mask1 10 204">
+        <path class="cls-2" d="M-1289.32-1577.33h4000v4000H-1289.32V-1577.33Z"/>
+      </g>
+    </mask>
+    <mask id="mask-2" x="-1289.32" y="-1577.33" width="4000" height="4000" maskUnits="userSpaceOnUse">
+      <g id="mask2_10_204" data-name="mask2 10 204">
+        <path class="cls-2" d="M-1289.32-1577.33h4000v4000H-1289.32V-1577.33Z"/>
+      </g>
+    </mask>
+    <mask id="mask-3" x="-1289.32" y="-1577.33" width="4000" height="4000" maskUnits="userSpaceOnUse">
+      <g id="mask3_10_204" data-name="mask3 10 204">
+        <path class="cls-2" d="M-1289.32-1577.33h4000v4000H-1289.32V-1577.33Z"/>
+      </g>
+    </mask>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <g class="cls-3">
+        <path class="cls-6" d="M1360.16,242.49L1421.36,0h-311.61l-49.48,226.27c107.22,4.66,211.2,10.59,299.89,16.22Z"/>
+      </g>
+      <g class="cls-1">
+        <path class="cls-6" d="M714.44,217.63c59.62,0,122.94,1.08,187.29,2.89L845.34,0h-263.43l-55.25,220.61c64.84-1.86,128.39-2.98,187.78-2.98Z"/>
+      </g>
+      <g class="cls-4">
+        <path class="cls-5" d="M1053.78,255.93l-65.91,301.4-78.42-306.65c-67.01-1.95-133.03-3.13-195.01-3.13s-127.88,1.22-195.33,3.22l-76.78,306.56-66.95-301.28c-109.43,4.74-216.21,10.83-306.9,16.58l143.84,572.71h417.76l81.58-355.83,80.6,355.83h415.77l144.69-573.35c-88.76-5.61-192.34-11.48-298.94-16.06Z"/>
+      </g>
+      <g class="cls-7">
+        <path class="cls-6" d="M368.79,226.4L318.47,0H0l61.06,243.12c90.56-5.78,197.73-11.91,307.73-16.72Z"/>
+      </g>
+    </g>
+  </g>
+</svg>

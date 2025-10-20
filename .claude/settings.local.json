@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/user/Desktop/회사홈페이지 개발/MilkyWai_회사소개/**)",
+      "Read(//c/Users/user/Desktop/img_reference/**)",
+      "Bash(npm run build:*)",
+      "Read(//c/Users/user/Desktop/회사홈페이지 개발/MilkyWai_솔루션/**)",
+      "Bash(npm run dev:*)",
+      "WebSearch",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nfeat: ServiceSection 레이아웃 및 가독성 개선\n\n- Featured Services Grid를 4×2 레이아웃으로 변경하여 카드 크기 증대\n- 텍스트 크기 증대: 제목(1.05rem), 설명(0.85rem), 뱃지(0.75rem)\n- 카드 패딩 및 간격 조정으로 더 넉넉한 여백 확보\n- Featured highlight 뱃지 스타일 개선 (box-shadow, border-radius, 애니메이션)\n- Mobile services 레이아웃을 vertical card 형식으로 변경\n- 솔루션 컴포넌트 배경색 통일 (Architecture 섹션 #f8f9fa)\n- WORK_LOG.md 추가하여 작업 히스토리 문서화\nEOF\n)\")",
+      "Bash(npm run build:dev:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(unzip:*)",
+      "Bash(cp:*)",
+      "Bash(npm run:*)",
+      "Bash(npm install:*)",
+      "Read(//c/Users/user/Desktop/**)",
+      "Bash(tar:*)",
+      "Bash(git checkout:*)",
+      "WebFetch(domain:www.milvus.co.kr)",
+      "Bash(git init)",
+      "Bash(git remote add origin https://github.com/pinataman00/webliss-website.git)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
