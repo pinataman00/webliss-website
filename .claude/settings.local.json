@@ -22,7 +22,8 @@
       "WebFetch(domain:www.milvus.co.kr)",
       "Bash(git init)",
       "Bash(git remote add origin https://github.com/pinataman00/webliss-website.git)",
-      "Bash(vercel --yes)"
+      "Bash(vercel --yes)",
+      "Bash(vercel --prod)"
     ],
     "deny": [],
     "ask": []
