@@ -33,7 +33,7 @@
       <div class="services-preview">
         <div class="service-tag" @click="goToSolution('cloudwai')">Cloud Service</div>
         <div class="service-tag" @click="goToSolution('neoflow')">Data Platform</div>
-        <div class="service-tag" @click="goToSolution('dapq')">AI Chatbot</div>
+        <div class="service-tag" @click="goToSolution('verora')">AI Chatbot</div>
         <div class="service-tag" @click="goToSolution('dataq')">AI Data Analytics</div>
         <div class="service-tag" @click="goToSolution('dovora')">AI Document</div>
         <div class="service-tag" @click="goToSolution('kubesync')">DevOps Service</div>
@@ -80,6 +80,8 @@ export default {
   position: relative;
   overflow: hidden;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  /* Header와 겹치지 않도록 상단 여백 확보 */
+  padding-top: 70px;
 }
 
 .hero-background {
@@ -243,6 +245,11 @@ export default {
 
 /* 작은 모바일 */
 @media (max-width: 480px) {
+  .hero {
+    /* 작은 화면에서도 충분한 여백 확보 */
+    padding-top: 80px;
+  }
+
   .hero h1 {
     font-size: 1.8rem;
   }
@@ -254,6 +261,11 @@ export default {
 
 /* 모바일 대응 */
 @media (max-width: 768px) {
+
+  .hero {
+    /* 모바일에서 Header와 더 많은 여백 확보 */
+    padding-top: 90px;
+  }
 
   .hero-content {
     padding: 0 30px; /* 좌우 여백 증가 */

@@ -66,13 +66,20 @@ export default {
       console.log('Header 드롭다운에서 솔루션 선택:', solutionId)
       this.activeSolution = solutionId
 
-      // Solutions 섹션으로 부드럽게 스크롤 (HeaderComponent에서도 하지만 확실히 하기 위해)
+      // solution-nav부터 보이도록 스크롤
       setTimeout(() => {
-        const solutionsSection = document.querySelector('#solutions')
-        if (solutionsSection) {
-          const offsetTop = solutionsSection.offsetTop - 70
+        const solutionNav = document.querySelector('.solution-nav')
+        if (solutionNav) {
+          const navRect = solutionNav.getBoundingClientRect()
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+          const headerHeight = 70 // 헤더 높이
+          const additionalOffset = window.innerWidth <= 768 ? 30 : 40 // 모바일/PC 여백
+
+          // solution-nav 상단이 헤더 아래 충분한 여백과 함께 보이도록 계산
+          const targetPosition = scrollTop + navRect.top - headerHeight - additionalOffset
+
           window.scrollTo({
-            top: offsetTop,
+            top: targetPosition,
             behavior: 'smooth'
           })
         }
@@ -92,15 +99,24 @@ export default {
       // 해당 솔루션 탭 활성화
       this.activeSolution = solutionType
 
-      // Solutions 섹션으로 스크롤
-      const solutionsSection = document.querySelector('#solutions')
-      if (solutionsSection) {
-        const offsetTop = solutionsSection.offsetTop - 70
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        })
-      }
+      // solution-nav부터 보이도록 스크롤
+      setTimeout(() => {
+        const solutionNav = document.querySelector('.solution-nav')
+        if (solutionNav) {
+          const navRect = solutionNav.getBoundingClientRect()
+          const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+          const headerHeight = 70 // 헤더 높이
+          const additionalOffset = window.innerWidth <= 768 ? 30 : 40 // 모바일/PC 여백
+
+          // solution-nav 상단이 헤더 아래 충분한 여백과 함께 보이도록 계산
+          const targetPosition = scrollTop + navRect.top - headerHeight - additionalOffset
+
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
+          })
+        }
+      }, 100)
     },
     changeSolution(solutionType) {
       this.activeSolution = solutionType

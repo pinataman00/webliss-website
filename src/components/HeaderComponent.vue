@@ -120,7 +120,7 @@ export default {
         icon: orkisSymbol
       },
       {
-        id: 'dapq',
+        id: 'verora',
         name: 'Verora',
         pron: '베로라',
         description: 'RAG 기반 생성형 AI 채팅 서비스',

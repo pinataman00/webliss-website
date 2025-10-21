@@ -153,6 +153,16 @@ export default {
     }
   },
   emits: ['change-solution'],
+  watch: {
+    // activeSolution prop이 변경되면 모바일에서 가로 스크롤 조정
+    activeSolution(newVal) {
+      if (window.innerWidth <= 768) {
+        this.$nextTick(() => {
+          this.scrollActiveButtonIntoView(newVal)
+        })
+      }
+    }
+  },
   mounted() {
     window.addEventListener('scroll', this.handleScroll)
     this.handleScroll() // 초기 상태 체크
@@ -214,10 +224,10 @@ export default {
           if (solutionNav) {
             const navRect = solutionNav.getBoundingClientRect()
             const scrollTop = window.pageYOffset || document.documentElement.scrollTop
-            const headerHeight = 80 // 헤더 높이
-            const additionalOffset = 20 // nav 위쪽 여백
+            const headerHeight = 70 // 헤더 높이
+            const additionalOffset = window.innerWidth <= 768 ? 30 : 40 // 모바일/PC 여백
 
-            // solution-nav 상단이 헤더 아래 20px 위치에 오도록 계산
+            // solution-nav 상단이 헤더 아래 충분한 여백과 함께 보이도록 계산
             const targetPosition = scrollTop + navRect.top - headerHeight - additionalOffset
 
             window.scrollTo({
@@ -260,6 +270,8 @@ export default {
 
 .solutions-section {
   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  /* solution-nav가 잘리지 않도록 상단 여백 추가 */
+  padding-top: 120px;
 }
 
 .solution-nav {
@@ -512,6 +524,11 @@ export default {
 }
 
 @media (max-width: 768px) {
+  .solutions-section {
+    /* 모바일에서도 충분한 상단 여백 확보 */
+    padding-top: 100px;
+  }
+
   .section-subtitle {
     font-size: 0.95rem;
   }
