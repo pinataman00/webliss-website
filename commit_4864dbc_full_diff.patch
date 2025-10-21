@@ -1,0 +1,208 @@
+commit 4864dbcb53085ad38e4569bfcda1c2f656e520a5
+Author: dy.kim <pinataman01@gmail.com>
+Date:   Tue Oct 21 14:30:42 2025 +0900
+
+    feat: UI 개선 - 모바일 레이아웃 및 솔루션 네비게이션 최적화
+    
+    - HeroSection과 Header 겹침 문제 해결
+      - 데스크톱: padding-top 70px
+      - 모바일(768px 이하): padding-top 90px
+      - 작은 모바일(480px 이하): padding-top 80px
+    
+    - Verora 솔루션 ID 수정
+      - HeaderComponent와 HeroSection에서 'dapq' → 'verora'로 통일
+      - 모든 컴포넌트에서 일관된 솔루션 ID 사용
+    
+    - solution-nav 스크롤 및 가시성 개선
+      - solution-nav가 화면 상단에 잘리지 않도록 오프셋 조정
+      - PC: 헤더 아래 40px 여백, 모바일: 30px 여백
+      - SolutionsSection 상단 여백 추가 (PC: 120px, 모바일: 100px)
+    
+    - 모바일에서 active 솔루션 버튼 자동 스크롤
+      - activeSolution prop 변경 감지 (watch)
+      - active 버튼이 화면 중앙에 오도록 가로 스크롤 자동 조정
+      - Header 드롭다운/HeroSection/ServiceSection 모든 경로에서 작동
+    
+    🤖 Generated with [Claude Code](https://claude.com/claude-code)
+    
+    Co-Authored-By: Claude <noreply@anthropic.com>
+
+diff --git a/src/App.vue b/src/App.vue
+index 0e79dff..60465f1 100644
+--- a/src/App.vue
++++ b/src/App.vue
+@@ -66,13 +66,20 @@ export default {
+       console.log('Header 드롭다운에서 솔루션 선택:', solutionId)
+       this.activeSolution = solutionId
+ 
+-      // Solutions 섹션으로 부드럽게 스크롤 (HeaderComponent에서도 하지만 확실히 하기 위해)
++      // solution-nav부터 보이도록 스크롤
+       setTimeout(() => {
+-        const solutionsSection = document.querySelector('#solutions')
+-        if (solutionsSection) {
+-          const offsetTop = solutionsSection.offsetTop - 70
++        const solutionNav = document.querySelector('.solution-nav')
++        if (solutionNav) {
++          const navRect = solutionNav.getBoundingClientRect()
++          const scrollTop = window.pageYOffset || document.documentElement.scrollTop
++          const headerHeight = 70 // 헤더 높이
++          const additionalOffset = window.innerWidth <= 768 ? 30 : 40 // 모바일/PC 여백
++
++          // solution-nav 상단이 헤더 아래 충분한 여백과 함께 보이도록 계산
++          const targetPosition = scrollTop + navRect.top - headerHeight - additionalOffset
++
+           window.scrollTo({
+-            top: offsetTop,
++            top: targetPosition,
+             behavior: 'smooth'
+           })
+         }
+@@ -92,15 +99,24 @@ export default {
+       // 해당 솔루션 탭 활성화
+       this.activeSolution = solutionType
+ 
+-      // Solutions 섹션으로 스크롤
+-      const solutionsSection = document.querySelector('#solutions')
+-      if (solutionsSection) {
+-        const offsetTop = solutionsSection.offsetTop - 70
+-        window.scrollTo({
+-          top: offsetTop,
+-          behavior: 'smooth'
+-        })
+-      }
++      // solution-nav부터 보이도록 스크롤
++      setTimeout(() => {
++        const solutionNav = document.querySelector('.solution-nav')
++        if (solutionNav) {
++          const navRect = solutionNav.getBoundingClientRect()
++          const scrollTop = window.pageYOffset || document.documentElement.scrollTop
++          const headerHeight = 70 // 헤더 높이
++          const additionalOffset = window.innerWidth <= 768 ? 30 : 40 // 모바일/PC 여백
++
++          // solution-nav 상단이 헤더 아래 충분한 여백과 함께 보이도록 계산
++          const targetPosition = scrollTop + navRect.top - headerHeight - additionalOffset
++
++          window.scrollTo({
++            top: targetPosition,
++            behavior: 'smooth'
++          })
++        }
++      }, 100)
+     },
+     changeSolution(solutionType) {
+       this.activeSolution = solutionType
+diff --git a/src/components/HeaderComponent.vue b/src/components/HeaderComponent.vue
+index 81be537..4d11405 100644
+--- a/src/components/HeaderComponent.vue
++++ b/src/components/HeaderComponent.vue
+@@ -120,7 +120,7 @@ export default {
+         icon: orkisSymbol
+       },
+       {
+-        id: 'dapq',
++        id: 'verora',
+         name: 'Verora',
+         pron: '베로라',
+         description: 'RAG 기반 생성형 AI 채팅 서비스',
+diff --git a/src/components/HeroSection.vue b/src/components/HeroSection.vue
+index 41e23b7..a7ae280 100644
+--- a/src/components/HeroSection.vue
++++ b/src/components/HeroSection.vue
+@@ -33,7 +33,7 @@
+       <div class="services-preview">
+         <div class="service-tag" @click="goToSolution('cloudwai')">Cloud Service</div>
+         <div class="service-tag" @click="goToSolution('neoflow')">Data Platform</div>
+-        <div class="service-tag" @click="goToSolution('dapq')">AI Chatbot</div>
++        <div class="service-tag" @click="goToSolution('verora')">AI Chatbot</div>
+         <div class="service-tag" @click="goToSolution('dataq')">AI Data Analytics</div>
+         <div class="service-tag" @click="goToSolution('dovora')">AI Document</div>
+         <div class="service-tag" @click="goToSolution('kubesync')">DevOps Service</div>
+@@ -80,6 +80,8 @@ export default {
+   position: relative;
+   overflow: hidden;
+   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
++  /* Header와 겹치지 않도록 상단 여백 확보 */
++  padding-top: 70px;
+ }
+ 
+ .hero-background {
+@@ -243,6 +245,11 @@ export default {
+ 
+ /* 작은 모바일 */
+ @media (max-width: 480px) {
++  .hero {
++    /* 작은 화면에서도 충분한 여백 확보 */
++    padding-top: 80px;
++  }
++
+   .hero h1 {
+     font-size: 1.8rem;
+   }
+@@ -255,6 +262,11 @@ export default {
+ /* 모바일 대응 */
+ @media (max-width: 768px) {
+ 
++  .hero {
++    /* 모바일에서 Header와 더 많은 여백 확보 */
++    padding-top: 90px;
++  }
++
+   .hero-content {
+     padding: 0 30px; /* 좌우 여백 증가 */
+   }
+diff --git a/src/components/SolutionsSection.vue b/src/components/SolutionsSection.vue
+index 8f5e250..fd1c3b2 100644
+--- a/src/components/SolutionsSection.vue
++++ b/src/components/SolutionsSection.vue
+@@ -153,6 +153,16 @@ export default {
+     }
+   },
+   emits: ['change-solution'],
++  watch: {
++    // activeSolution prop이 변경되면 모바일에서 가로 스크롤 조정
++    activeSolution(newVal) {
++      if (window.innerWidth <= 768) {
++        this.$nextTick(() => {
++          this.scrollActiveButtonIntoView(newVal)
++        })
++      }
++    }
++  },
+   mounted() {
+     window.addEventListener('scroll', this.handleScroll)
+     this.handleScroll() // 초기 상태 체크
+@@ -214,10 +224,10 @@ export default {
+           if (solutionNav) {
+             const navRect = solutionNav.getBoundingClientRect()
+             const scrollTop = window.pageYOffset || document.documentElement.scrollTop
+-            const headerHeight = 80 // 헤더 높이
+-            const additionalOffset = 20 // nav 위쪽 여백
++            const headerHeight = 70 // 헤더 높이
++            const additionalOffset = window.innerWidth <= 768 ? 30 : 40 // 모바일/PC 여백
+ 
+-            // solution-nav 상단이 헤더 아래 20px 위치에 오도록 계산
++            // solution-nav 상단이 헤더 아래 충분한 여백과 함께 보이도록 계산
+             const targetPosition = scrollTop + navRect.top - headerHeight - additionalOffset
+ 
+             window.scrollTo({
+@@ -260,6 +270,8 @@ export default {
+ 
+ .solutions-section {
+   background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
++  /* solution-nav가 잘리지 않도록 상단 여백 추가 */
++  padding-top: 120px;
+ }
+ 
+ .solution-nav {
+@@ -512,6 +524,11 @@ export default {
+ }
+ 
+ @media (max-width: 768px) {
++  .solutions-section {
++    /* 모바일에서도 충분한 상단 여백 확보 */
++    padding-top: 100px;
++  }
++
+   .section-subtitle {
+     font-size: 0.95rem;
+   }
