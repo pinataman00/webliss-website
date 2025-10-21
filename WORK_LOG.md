@@ -94,5 +94,63 @@
 2. 기타 UI/UX 개선 작업
 
 ---
-작성일: 2025-10-13
+
+## 2025-10-21 작업 내역
+
+### 완료된 작업
+
+1. **모바일 HeroSection과 Header 겹침 문제 해결** ✅
+   - **문제점**: 모바일에서 HeroSection의 hero-content가 HeaderComponent와 겹쳐서 보임
+   - **해결책**: HeroSection에 padding-top 추가
+     - 데스크톱: `padding-top: 70px`
+     - 모바일 (768px 이하): `padding-top: 90px`
+     - 작은 모바일 (480px 이하): `padding-top: 80px`
+   - 파일: `src/components/HeroSection.vue`
+
+2. **Verora 솔루션 ID 수정** ✅
+   - **문제점**: Header의 solutions-dropdown에서 Verora 연결이 이상함
+   - **원인**: HeaderComponent와 HeroSection에서 Verora의 id가 'dapq'로 잘못 설정됨
+   - **해결책**:
+     - HeaderComponent.vue (line 123): id를 'dapq' → 'verora'로 수정
+     - HeroSection.vue (line 36): AI Chatbot 태그의 id를 'dapq' → 'verora'로 수정
+   - **결과**: 모든 컴포넌트에서 일관된 솔루션 ID 사용
+   - 파일: `src/components/HeaderComponent.vue`, `src/components/HeroSection.vue`
+
+3. **solution-nav 스크롤 및 가시성 개선** ✅
+   - **문제점**:
+     - PC/모바일에서 solutions-dropdown의 특정 솔루션 선택 시 solution-nav가 보이지 않음
+     - solution-nav의 윗부분이 잘려서 보임
+   - **해결책**:
+     - `handleSolutionSelected`와 `goToSolution` 메서드 수정
+       - 헤더 높이: 80px → 70px로 조정
+       - 추가 여백: 20px → 모바일 30px, PC 40px로 증가
+       - solution-nav 상단이 헤더 아래 충분한 여백과 함께 보이도록 계산
+     - SolutionsSection 상단 여백 추가
+       - PC: `padding-top: 120px`
+       - 모바일: `padding-top: 100px`
+   - **결과**: Header/HeroSection/ServiceSection 어디서든 솔루션 선택 시 solution-nav가 깔끔하게 보임
+   - 파일: `src/App.vue`, `src/components/SolutionsSection.vue`
+
+4. **모바일에서 active 솔루션 버튼 자동 스크롤** ✅
+   - **문제점**: 모바일에서 solution-nav의 active 버튼이 화면 밖에 있을 수 있음
+   - **해결책**:
+     - `watch`를 통해 `activeSolution` prop 변경 감지
+     - 모바일 (768px 이하)에서 `scrollActiveButtonIntoView` 메서드 자동 호출
+     - active 버튼이 화면 중앙에 오도록 가로 스크롤 자동 조정
+   - **결과**: Header 드롭다운/HeroSection/ServiceSection 모든 경로에서 active 버튼이 자동으로 화면 중앙에 표시됨
+   - 파일: `src/components/SolutionsSection.vue` (lines 156-165)
+
+### Git 커밋
+- 커밋 메시지: `feat: UI 개선 - 모바일 레이아웃 및 솔루션 네비게이션 최적화`
+- 커밋 해시: `4864dbc`
+- 변경된 파일: 4개 (App.vue, HeaderComponent.vue, HeroSection.vue, SolutionsSection.vue)
+- 변경 사항: 64 insertions(+), 19 deletions(-)
+
+### 기술적 개선 사항
+- **일관성**: 모든 스크롤 로직에서 동일한 headerHeight(70px)와 offset(모바일 30px, PC 40px) 사용
+- **반응형**: 모바일과 데스크톱 화면 크기에 따라 동적으로 여백 조정
+- **사용자 경험**: 솔루션 선택 시 자연스러운 스크롤 애니메이션과 정확한 위치 이동
+
+---
+작성일: 2025-10-13, 2025-10-21
 작성자: Claude Code
