@@ -121,7 +121,7 @@ import Dovora from './solutions/Dovora.vue'
 import cloudWaiLogo from '../assets/solutions-logo/CloudWai.png'
 import orkisLogo from '../assets/solutions-logo/Orkis.png'
 import veroraLogo from '../assets/solutions-logo/Verora.png'
-import sioraLogo from '../assets/solutions-logo/Siora.png'
+import sioraLogo from '../assets/solutions-logo/Siora-horizontal.svg'
 import neoFlowLogo from '../assets/solutions-logo/NeoFlow.png'
 import dovoraLogo from '../assets/solutions-logo/Dovora.png'
 
@@ -330,6 +330,12 @@ export default {
   object-position: left;
   margin: 0 0 10px 3px;
   display: block;
+}
+
+.tooltip-logo-neoflow,
+.tooltip-logo-orkis {
+  transform: scale(1.5);
+  transform-origin: left center;
 }
 
 .tooltip-solution-title {

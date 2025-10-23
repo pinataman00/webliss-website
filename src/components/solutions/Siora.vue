@@ -183,7 +183,7 @@ LIMIT 5;</code></pre>
 </template>
 
 <script>
-import symbolImage from '../../assets/solutions-logo/logo-symbol/Siora_symbol.png'
+import symbolImage from '../../assets/solutions-logo/logo-symbol/Siora_symbol.svg'
 
 export default {
   name: 'Siora',

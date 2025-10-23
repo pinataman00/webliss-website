@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 791.5 738.35">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="711.96" y1="713.21" x2="-58.62" y2="268.31" gradientUnits="userSpaceOnUse">
+      <stop offset=".12" stop-color="#3755fd"/>
+      <stop offset=".23" stop-color="#355afc"/>
+      <stop offset=".37" stop-color="#3068fa"/>
+      <stop offset=".52" stop-color="#2881f7"/>
+      <stop offset=".68" stop-color="#1da3f2"/>
+      <stop offset=".85" stop-color="#0fcfed"/>
+      <stop offset="1" stop-color="#00ffe7"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="709.75" y1="449.34" x2="190.85" y2="149.75" gradientUnits="userSpaceOnUse">
+      <stop offset=".21" stop-color="#3755fd"/>
+      <stop offset=".33" stop-color="#345bfc"/>
+      <stop offset=".49" stop-color="#2f6df9"/>
+      <stop offset=".68" stop-color="#268af6"/>
+      <stop offset=".79" stop-color="#19aff1"/>
+      <stop offset="1" stop-color="#00ffe7"/>
+    </linearGradient>
+  </defs>
+  <g id="Siora_2">
+    <g>
+      <path class="cls-2" d="M791.03,570.13l-59.85-59.69C464.28,832.14-31.36,541.02,117.08,151.06c-.83-4.26-54.47-57.77-60.73-62.08-3.14-2.16-3.68-5.2-9.32-3.67C-50.26,285.29,6.31,529.31,189.71,656.61c172,119.39,398.8,107.03,556.29-30.76,9.17-8.02,50.35-45,45.03-55.73Z"/>
+      <path class="cls-1" d="M229.47,201.31c118.18,29.36,124.17,196.29,6.83,233.31-17.91,5.65-35.19,2.17-50.79,9.72,73.06,122.25,212.08,183.73,349.87,143.35,194.71-57.06,279.32-295.43,160.72-459.95C551.57-72.74,252.99-28.7,166.88,200.1c21.47.55,41.23-4.09,62.59,1.22Z"/>
+    </g>
+  </g>
+</svg>
