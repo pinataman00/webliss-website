@@ -847,8 +847,12 @@ defineExpose({
   justify-content: center;
   margin-bottom: 50px;
   border-bottom: 1px solid #e9ecef;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* PC에서 항상 일렬 배치 */
   gap: 10px;
+  overflow-x: auto; /* 넘칠 경우 가로 스크롤 */
+  overflow-y: hidden;
+  scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
 }
 
 .nav-item {
@@ -861,6 +865,7 @@ defineExpose({
   transition: all 0.3s ease;
   position: relative;
   white-space: nowrap;
+  flex-shrink: 0; /* 항목이 축소되지 않도록 */
 }
 
 .nav-item:hover {
