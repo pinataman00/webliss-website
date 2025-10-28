@@ -119,49 +119,60 @@
       <div class="accordion-content" v-show="accordionStates.useCase">
       <div class="before-after-container">
         <div class="before-card">
-          <div class="card-header card-header-vertical">
-            <font-awesome-icon :icon="['fas', 'face-frown']" class="card-icon-large" />
-            <h6>BEFORE</h6>
+          <div class="card-header">
+            <div class="header-badge before-badge">
+              <i class="fas fa-times-circle"></i>
+              <span>BEFORE</span>
+            </div>
+            <h6>기존 방식의 문제점</h6>
           </div>
           <div class="card-content">
             <div class="card-item">
-              <span class="item-icon"><i class="fas fa-desktop"></i></span>
+              <span class="item-icon negative-icon"><i class="fas fa-desktop"></i></span>
               <span class="item-text">AWS, Azure, GCP 콘솔을 각각 접속해서 관리</span>
             </div>
             <div class="card-item">
-              <span class="item-icon"><i class="fas fa-money-bill-wave"></i></span>
+              <span class="item-icon negative-icon"><i class="fas fa-money-bill-wave"></i></span>
               <span class="item-text">각 클라우드별 복잡한 빌링 시스템으로 비용 파악 어려움</span>
             </div>
             <div class="card-item">
-              <span class="item-icon"><i class="fas fa-clock"></i></span>
+              <span class="item-icon negative-icon"><i class="fas fa-clock"></i></span>
               <span class="item-text">인프라 구축에 수일 소요, 반복 작업 많음</span>
             </div>
             <div class="card-item">
-              <span class="item-icon"><i class="fas fa-chart-bar"></i></span>
+              <span class="item-icon negative-icon"><i class="fas fa-chart-bar"></i></span>
               <span class="item-text">서비스별 모니터링 도구가 제각각, 통합 불가</span>
             </div>
           </div>
         </div>
-        <div class="arrow-divider">→</div>
+
+        <div class="arrow-divider">
+          <i class="fas fa-arrow-right"></i>
+        </div>
+
         <div class="after-card">
-          <div class="card-header card-header-vertical">
-            <img :src="logoImage" alt="CloudWai" class="card-logo" />
+          <div class="card-header">
+            <div class="header-badge after-badge">
+              <i class="fas fa-check-circle"></i>
+              <span>AFTER</span>
+            </div>
+            <img :src="logoImage" alt="CloudWai" class="card-logo-header" />
           </div>
           <div class="card-content">
             <div class="card-item">
-              <span class="item-icon"><i class="fas fa-bullseye"></i></span>
+              <span class="item-icon positive-icon"><i class="fas fa-bullseye"></i></span>
               <span class="item-text">단일 콘솔에서 멀티클라우드 통합 관리</span>
             </div>
             <div class="card-item">
-              <span class="item-icon"><i class="fas fa-dollar-sign"></i></span>
+              <span class="item-icon positive-icon"><i class="fas fa-dollar-sign"></i></span>
               <span class="item-text">통합 빌링으로 전체 비용 한눈에 파악 및 최적화</span>
             </div>
             <div class="card-item">
-              <span class="item-icon"><i class="fas fa-bolt"></i></span>
+              <span class="item-icon positive-icon"><i class="fas fa-bolt"></i></span>
               <span class="item-text">템플릿 기반 3분 내 인프라 자동 배포</span>
             </div>
             <div class="card-item">
-              <span class="item-icon"><i class="fas fa-chart-line"></i></span>
+              <span class="item-icon positive-icon"><i class="fas fa-chart-line"></i></span>
               <span class="item-text">통합 모니터링 대시보드로 실시간 추적</span>
             </div>
           </div>
@@ -208,7 +219,7 @@
 </template>
 
 <script>
-import logoImage from '../../assets/solutions-logo/logo-vertical/CloudWai_vertical.png'
+import logoImage from '../../assets/solutions-logo/CloudWai.png'
 import symbolImage from '../../assets/solutions-logo/logo-symbol/CloudWai_symbol.png'
 import awsLogo from '../../assets/brands_ci/servers/aws.svg'
 import azureLogo from '../../assets/brands_ci/servers/azure.svg'
@@ -781,123 +792,192 @@ export default {
 .before-after-container {
   display: grid;
   grid-template-columns: 1fr auto 1fr;
-  gap: 30px;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
+  gap: 25px;
+  align-items: stretch;
 }
 
-.before-card, .after-card {
-  background: white;
-  border-radius: 20px;
-  padding: 35px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+.before-card,
+.after-card {
+  border-radius: 15px;
+  padding: 30px;
   transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
 }
 
 .before-card {
-  background: linear-gradient(135deg, #fff5f5 0%, #ffe0e0 100%);
-  border: 2px solid #ffcccc;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  border: 2px solid #fecaca;
 }
 
 .before-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 50px rgba(255, 107, 107, 0.15);
+  box-shadow: 0 12px 35px rgba(239, 68, 68, 0.15);
+  border-color: #fca5a5;
 }
 
 .after-card {
-  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-  border: 2px solid #bbf7d0;
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+  border: 2px solid #bfdbfe;
 }
 
 .after-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 50px rgba(34, 197, 94, 0.15);
+  box-shadow: 0 12px 35px rgba(59, 130, 246, 0.15);
+  border-color: #93c5fd;
 }
 
 .card-header {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 12px;
   margin-bottom: 25px;
   padding-bottom: 20px;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  min-height: 120px;
+  justify-content: flex-start;
 }
 
-.card-header-vertical {
-  flex-direction: column;
-  justify-content: center;
+.header-badge {
+  display: inline-flex;
   align-items: center;
-  text-align: center;
-  gap: 15px;
-  padding: 20px;
-  border-bottom: none;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  width: fit-content;
 }
 
-.card-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
+.before-badge {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
 }
 
-.card-icon-large {
-  font-size: 4rem;
-  color: #dc2626;
+.after-badge {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  color: white;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
-.card-logo {
+.header-badge i {
+  font-size: 1rem;
+}
+
+.card-logo-header {
+  width: 100%;
   max-width: 200px;
-  height: auto;
+  height: 50px;
   object-fit: contain;
+  margin: 0 auto;
+  display: block;
 }
 
 .card-header h6 {
   font-size: 1.3rem;
   font-weight: 700;
-  color: #333;
-  margin: 0;
+  color: #1f2937;
+  margin: 0 auto;
+  line-height: 1.6;
+  text-align: center;
 }
 
 .card-content {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 12px;
+  flex: 1;
 }
 
 .card-item {
   display: flex;
   align-items: flex-start;
-  gap: 15px;
-  padding: 15px;
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 12px;
+  gap: 12px;
+  padding: 12px;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 10px;
   transition: all 0.3s ease;
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .card-item:hover {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 1);
   transform: translateX(5px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.1);
 }
 
 .item-icon {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   flex-shrink: 0;
   line-height: 1.4;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.negative-icon {
+  color: #dc2626;
+  background: rgba(220, 38, 38, 0.1);
+}
+
+.positive-icon {
+  color: #2563eb;
+  background: rgba(37, 99, 235, 0.1);
+}
+
+.card-item:hover .negative-icon {
+  background: rgba(220, 38, 38, 0.15);
+  transform: scale(1.1);
+}
+
+.card-item:hover .positive-icon {
+  background: rgba(37, 99, 235, 0.15);
+  transform: scale(1.1);
+}
+
+.item-icon i {
+  font-size: 1rem;
 }
 
 .item-text {
-  font-size: 1rem;
+  font-size: 0.95rem;
+  color: #374151;
   line-height: 1.6;
-  color: #333;
   font-weight: 500;
 }
 
 .arrow-divider {
-  font-size: 3rem;
+  font-size: 2.2rem;
   color: #667eea;
-  font-weight: bold;
-  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.arrow-divider i {
+  animation: arrowPulse 2s ease-in-out infinite;
+}
+
+@keyframes arrowPulse {
+  0%, 100% {
+    transform: translateX(0);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateX(5px);
+    opacity: 1;
+  }
 }
 
 .solution-architecture {
@@ -1265,33 +1345,30 @@ export default {
   }
 
   .before-card, .after-card {
-    padding: 15px;
+    padding: 18px;
   }
 
   .card-header {
     margin-bottom: 15px;
     padding-bottom: 12px;
-  }
-
-  .card-header-vertical {
-    padding: 15px;
     gap: 10px;
   }
 
+  .header-badge {
+    padding: 6px 12px;
+    font-size: 0.75rem;
+  }
+
+  .header-badge i {
+    font-size: 0.85rem;
+  }
+
+  .card-logo-header {
+    max-width: 130px;
+  }
+
   .card-header h6 {
-    font-size: 0.95rem;
-  }
-
-  .card-icon {
-    font-size: 1.3rem;
-  }
-
-  .card-icon-large {
-    font-size: 3rem;
-  }
-
-  .card-logo {
-    max-width: 150px;
+    font-size: 1rem;
   }
 
   .card-content {
@@ -1300,22 +1377,25 @@ export default {
 
   .card-item {
     padding: 10px 8px;
-    gap: 8px;
+    gap: 10px;
   }
 
   .item-icon {
-    font-size: 1.1rem;
-    line-height: 1;
+    width: 26px;
+    height: 26px;
+  }
+
+  .item-icon i {
+    font-size: 0.9rem;
   }
 
   .item-text {
-    font-size: 0.85rem;
-    line-height: 1.4;
+    font-size: 0.8rem;
+    line-height: 1.5;
   }
 
   .arrow-divider {
-    font-size: 1.5rem;
-    margin: 3px 0;
+    font-size: 1.8rem;
   }
 
   .solution-architecture {
